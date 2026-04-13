@@ -18,7 +18,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -29,7 +28,6 @@
       line-height: 1.7;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -66,7 +64,6 @@
 
     .nav-links a:hover { color: var(--white); }
 
-    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -147,7 +144,6 @@
       box-shadow: 0 0 40px rgba(45,212,191,0.4);
     }
 
-    /* FEATURES */
     .section {
       padding: 5rem 2rem;
       max-width: 900px;
@@ -208,7 +204,6 @@
       line-height: 1.7;
     }
 
-    /* DIVIDER */
     .divider {
       height: 1px;
       background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
@@ -216,7 +211,6 @@
       margin: 0 auto;
     }
 
-    /* PRIVACY POLICY */
     #privacy {
       background: var(--navy-mid);
       border-top: 1px solid rgba(255,255,255,0.05);
@@ -238,10 +232,7 @@
       line-height: 1.8;
     }
 
-    .privacy-content ul {
-      padding-left: 1.25rem;
-    }
-
+    .privacy-content ul { padding-left: 1.25rem; }
     .privacy-content ul li { margin-bottom: 0.4rem; }
 
     .privacy-highlight {
@@ -254,10 +245,7 @@
       font-size: 0.95rem;
     }
 
-    /* SUPPORT */
-    #support {
-      text-align: center;
-    }
+    #support { text-align: center; }
 
     .support-card {
       background: var(--navy-mid);
@@ -276,7 +264,7 @@
 
     .support-card p {
       color: var(--gray);
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.25rem;
       font-size: 0.95rem;
     }
 
@@ -295,11 +283,8 @@
       transition: background 0.2s;
     }
 
-    .support-email:hover {
-      background: rgba(45,212,191,0.2);
-    }
+    .support-email:hover { background: rgba(45,212,191,0.2); }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 2.5rem 2rem;
@@ -308,18 +293,14 @@
       border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    footer span { color: var(--gray); }
+    footer a { color: var(--gray); text-decoration: none; }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero > * {
-      animation: fadeUp 0.7s ease both;
-    }
-
+    .hero > * { animation: fadeUp 0.7s ease both; }
     .hero-badge { animation-delay: 0.1s; }
     .hero h1    { animation-delay: 0.2s; }
     .hero p     { animation-delay: 0.3s; }
@@ -328,7 +309,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">MediBills</div>
     <ul class="nav-links">
@@ -338,35 +318,33 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div>
       <div class="hero-badge">iOS App</div>
       <h1>Your medical bills,<br /><em>finally organized.</em></h1>
-      <p>MediBills helps you track providers, visits, bills, and payments — all stored privately on your device. No cloud. No account. No sharing.</p>
+      <p>MediBills helps you track providers, visits, bills, and payments — all stored privately on your device. No account required. No data sent anywhere without your control.</p>
       <a href="#support" class="hero-cta">Get Support ↓</a>
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="section" id="features">
     <div class="section-label">What it does</div>
     <div class="section-title">Everything you need to<br />manage medical expenses</div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🏥</div>
-        <h3>Track Providers & Visits</h3>
+        <h3>Track Providers &amp; Visits</h3>
         <p>Log every doctor, hospital, and specialist. Organize bills by visit so nothing gets lost.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💰</div>
-        <h3>Bill & Payment Tracking</h3>
+        <h3>Bill &amp; Payment Tracking</h3>
         <p>Record what insurance covered, any adjustments, and every payment you make. See your running balance instantly.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
         <h3>Private by Design</h3>
-        <p>All data lives on your device only. Face ID protection, auto-lock timer, and zero cloud storage.</p>
+        <p>All data lives on your device. Face ID protection, auto-lock timer, and no data collection of any kind.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📊</div>
@@ -380,15 +358,14 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">📤</div>
-        <h3>Export & Backup</h3>
-        <p>Export to CSV for your accountant. Back up your data to Files and restore anytime.</p>
+        <h3>Export &amp; Backup</h3>
+        <p>Export to CSV for your accountant. Back up your data to your own Files or iCloud and restore anytime — only you control where it goes.</p>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- PRIVACY POLICY -->
   <section id="privacy">
     <div class="section">
       <div class="section-label">Legal</div>
@@ -397,14 +374,14 @@
       <div class="privacy-content">
 
         <div class="privacy-highlight">
-          MediBills does not collect, transmit, or share any personal data. Ever. All information you enter stays on your device.
+          MediBills does not collect, transmit, or share any personal data. All information you enter stays on your device unless you choose to export or back it up yourself.
         </div>
 
         <h3>Data Collection</h3>
-        <p>MediBills does not collect any personal information. The app operates entirely on-device using local storage. No data is sent to any server, third party, or cloud service.</p>
+        <p>MediBills does not collect any personal information. The app operates entirely on-device using local storage. No data is sent to any server or third party by the app. Any backups are created locally on your device and shared only at your explicit direction — we never have access to your data.</p>
 
         <h3>Data Storage</h3>
-        <p>All data you enter — including providers, visits, bills, and payments — is stored locally on your iPhone using SQLite. This data never leaves your device unless you explicitly choose to export or back it up yourself.</p>
+        <p>All data you enter — including providers, visits, bills, and payments — is stored locally on your iPhone using SQLite. This data never leaves your device unless you explicitly choose to export or back it up yourself using the in-app tools.</p>
 
         <h3>Third-Party Services</h3>
         <p>MediBills does not use any third-party analytics, advertising, or tracking services. There are no SDKs that collect user data running in the app.</p>
@@ -415,39 +392,45 @@
         <h3>Notifications</h3>
         <p>If you enable notifications, they are used only to remind you of upcoming or overdue bill due dates. Notification permissions are handled by iOS and can be revoked at any time in your iPhone Settings.</p>
 
-        <h3>Backup & Export</h3>
-        <p>The backup and export features allow you to save your data to your own device storage or share it via the iOS share sheet. This is entirely under your control. We do not receive copies of your data.</p>
+        <h3>Backup &amp; Export</h3>
+        <p>The backup and export features allow you to save your data to your own device storage, iCloud, or any destination you choose via the iOS share sheet. This is entirely under your control. We do not receive, access, or store copies of your data at any time.</p>
 
         <h3>Children's Privacy</h3>
-        <p>MediBills does not knowingly collect data from anyone, including children under 13. Since no data is collected at all, this app complies with COPPA and similar regulations.</p>
+        <p>MediBills does not collect data from any users, regardless of age. The app has no account system, no network requests, and no data collection mechanisms of any kind.</p>
+
+        <h3>Disclaimer</h3>
+        <p>MediBills is a personal finance tracking tool for organizing medical bill information. It is not a medical service, medical device, or healthcare provider. Nothing in this app constitutes medical or financial advice.</p>
 
         <h3>Changes to This Policy</h3>
-        <p>If we update this privacy policy, the updated version will be posted here. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+        <p>If we update this privacy policy, the updated version will be posted at this URL. We encourage you to review this page periodically. Your continued use of the app after any changes indicates your awareness of the updated policy.</p>
 
         <h3>Contact</h3>
-        <p>Questions about privacy? Email us at <a href="/cdn-cgi/l/email-protection#2a474f4e434843464659044b5a5a6a4d474b434604494547" style="color: var(--teal);"><span class="__cf_email__" data-cfemail="a7cac2c3cec5cecbcbd489c6d7d7e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a></p>
+        <p>Questions about privacy? Email us at <a href="mailto:medibills.app@gmail.com" style="color: var(--teal);">medibills.app@gmail.com</a></p>
 
-        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy-light);">Last updated: April 2026 · Khan Brothers Tech</p>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy-light);">Last updated: April 2026 &middot; Khan Brothers Tech</p>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- SUPPORT -->
   <section class="section" id="support">
     <div class="section-label">Help</div>
     <div class="section-title" style="text-align:center;">We're here to help</div>
     <div class="support-card">
       <h3>Contact Support</h3>
       <p>Have a question, found a bug, or need help with MediBills? Send us an email and we'll get back to you as soon as possible.</p>
-      <p style="color: var(--teal); font-size: 0.95rem; margin-bottom: 1.25rem; font-weight: 500;">medibills.app@gmail.com</p>
+      <p style="color: var(--teal); font-size: 0.95rem; font-weight: 500; margin-bottom: 1.25rem;">medibills.app@gmail.com</p>
       <a href="mailto:medibills.app@gmail.com" class="support-email">
         ✉️ Send us an email
       </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Khan Brothers Tech · <a href="
+    <p>&copy; 2026 Khan Brothers Tech &middot; <a href="#privacy">Privacy Policy</a></p>
+    <p style="margin-top: 0.5rem; color: var(--navy-light);">MediBills is not a medical service. It is a personal finance tracking tool for organizing medical expenses.</p>
+  </footer>
+
+</body>
+</html>
