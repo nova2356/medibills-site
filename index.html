@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediBills — Private Medical Bill Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0F172A;
+      --navy-mid: #1E293B;
+      --navy-light: #334155;
+      --teal: #2DD4BF;
+      --teal-dim: #0F766E;
+      --white: #F8FAFC;
+      --gray: #94A3B8;
+      --light-gray: #E2E8F0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(45,212,191,0.1);
+      border: 1px solid rgba(45,212,191,0.3);
+      color: var(--teal);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 1.15rem;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(45,212,191,0.25);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(45,212,191,0.4);
+    }
+
+    /* FEATURES */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(45,212,191,0.25);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* PRIVACY POLICY */
+    #privacy {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .privacy-content h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--white);
+    }
+
+    .privacy-content h3:first-child { margin-top: 0; }
+
+    .privacy-content p, .privacy-content ul {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .privacy-content ul {
+      padding-left: 1.25rem;
+    }
+
+    .privacy-content ul li { margin-bottom: 0.4rem; }
+
+    .privacy-highlight {
+      background: rgba(45,212,191,0.08);
+      border-left: 3px solid var(--teal);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      color: var(--white);
+      font-size: 0.95rem;
+    }
+
+    /* SUPPORT */
+    #support {
+      text-align: center;
+    }
+
+    .support-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .support-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .support-card p {
+      color: var(--gray);
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .support-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(45,212,191,0.1);
+      border: 1px solid rgba(45,212,191,0.3);
+      color: var(--teal);
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .support-email:hover {
+      background: rgba(45,212,191,0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: var(--navy-light);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    footer span { color: var(--gray); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero > * {
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-badge { animation-delay: 0.1s; }
+    .hero h1    { animation-delay: 0.2s; }
+    .hero p     { animation-delay: 0.3s; }
+    .hero-cta   { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MediBills</div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#support">Support</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">iOS App</div>
+      <h1>Your medical bills,<br /><em>finally organized.</em></h1>
+      <p>MediBills helps you track providers, visits, bills, and payments — all stored privately on your device. No cloud. No account. No sharing.</p>
+      <a href="#support" class="hero-cta">Get Support ↓</a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="section-label">What it does</div>
+    <div class="section-title">Everything you need to<br />manage medical expenses</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏥</div>
+        <h3>Track Providers & Visits</h3>
+        <p>Log every doctor, hospital, and specialist. Organize bills by visit so nothing gets lost.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Bill & Payment Tracking</h3>
+        <p>Record what insurance covered, any adjustments, and every payment you make. See your running balance instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Private by Design</h3>
+        <p>All data lives on your device only. Face ID protection, auto-lock timer, and zero cloud storage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Annual Summary</h3>
+        <p>See your yearly spending, deductible progress, and out-of-pocket totals at a glance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Due Date Reminders</h3>
+        <p>Get notified before bills are due. Stay on top of overdue bills highlighted right on your dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>Export & Backup</h3>
+        <p>Export to CSV for your accountant. Back up your data to Files and restore anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRIVACY POLICY -->
+  <section id="privacy">
+    <div class="section">
+      <div class="section-label">Legal</div>
+      <div class="section-title">Privacy Policy</div>
+
+      <div class="privacy-content">
+
+        <div class="privacy-highlight">
+          MediBills does not collect, transmit, or share any personal data. Ever. All information you enter stays on your device.
+        </div>
+
+        <h3>Data Collection</h3>
+        <p>MediBills does not collect any personal information. The app operates entirely on-device using local storage. No data is sent to any server, third party, or cloud service.</p>
+
+        <h3>Data Storage</h3>
+        <p>All data you enter — including providers, visits, bills, and payments — is stored locally on your iPhone using SQLite. This data never leaves your device unless you explicitly choose to export or back it up yourself.</p>
+
+        <h3>Third-Party Services</h3>
+        <p>MediBills does not use any third-party analytics, advertising, or tracking services. There are no SDKs that collect user data running in the app.</p>
+
+        <h3>Biometric Data</h3>
+        <p>The app uses Face ID / Touch ID for authentication. Biometric data is handled entirely by iOS and Apple's Secure Enclave. MediBills never has access to your biometric information.</p>
+
+        <h3>Notifications</h3>
+        <p>If you enable notifications, they are used only to remind you of upcoming or overdue bill due dates. Notification permissions are handled by iOS and can be revoked at any time in your iPhone Settings.</p>
+
+        <h3>Backup & Export</h3>
+        <p>The backup and export features allow you to save your data to your own device storage or share it via the iOS share sheet. This is entirely under your control. We do not receive copies of your data.</p>
+
+        <h3>Children's Privacy</h3>
+        <p>MediBills does not knowingly collect data from anyone, including children under 13. Since no data is collected at all, this app complies with COPPA and similar regulations.</p>
+
+        <h3>Changes to This Policy</h3>
+        <p>If we update this privacy policy, the updated version will be posted here. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+        <h3>Contact</h3>
+        <p>Questions about privacy? Email us at <a href="/cdn-cgi/l/email-protection#2a474f4e434843464659044b5a5a6a4d474b434604494547" style="color: var(--teal);"><span class="__cf_email__" data-cfemail="a7cac2c3cec5cecbcbd489c6d7d7e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a></p>
+
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy-light);">Last updated: April 2026 · Khan Brothers Tech</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SUPPORT -->
+  <section class="section" id="support">
+    <div class="section-label">Help</div>
+    <div class="section-title" style="text-align:center;">We're here to help</div>
+    <div class="support-card">
+      <h3>Contact Support</h3>
+      <p>Have a question, found a bug, or need help with MediBills? Send us an email and we'll get back to you as soon as possible.</p>
+      <p style="color: var(--teal); font-size: 0.95rem; margin-bottom: 1.25rem; font-weight: 500;">medibills.app@gmail.com</p>
+      <a href="mailto:medibills.app@gmail.com" class="support-email">
+        ✉️ Send us an email
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Khan Brothers Tech · <a href="
