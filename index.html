@@ -9,11 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta name="color-scheme" content="dark" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ```
 :root {
+  color-scheme: dark;
   --navy: #0F172A;
   --navy-mid: #1E293B;
   --navy-light: #334155;
@@ -27,12 +29,15 @@
   --radius: 16px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background-color: #0F172A;
+}
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background-color: var(--navy);
-  color: var(--white);
+  background-color: #0F172A;
+  color: #F8FAFC;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -93,7 +98,7 @@ nav ul a:hover { color: var(--white); }
 /* ── HERO ── */
 .hero {
   position: relative;
-  padding: 140px 24px 60px;
+  padding: 140px 24px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,9 +217,8 @@ nav ul a:hover { color: var(--white); }
 section {
   position: relative;
   z-index: 1;
-  padding: 100px 24px;
+  padding: 60px 24px 100px;
   max-width: 1100px;
-  margin: 0 auto;
 }
 
 .section-label {
